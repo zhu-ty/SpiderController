@@ -27,6 +27,10 @@ namespace SpiderController
         /// 舵机转动最小角度
         /// </summary>
         public const int MIN_POS = 10;
+        /// <summary>
+        /// 中间位置
+        /// </summary>
+        public const int MID_POS = 50;
 
         /// <summary>
         /// 默认构造函数，应当依次调用set_com和connect才能开始发送
@@ -120,7 +124,7 @@ namespace SpiderController
                 if (pos[i] < MIN_POS || pos[i] > MAX_POS)
                     return false;
                 else if (i > 2)
-                    pos[i] = (byte)(MAX_POS - pos[i] + MIN_POS);
+                    pos[i] = (byte)(2 * MID_POS - pos[i]);
             }
             byte[] to_send = new byte[8];
             to_send[0] = 0xFE;
