@@ -6,103 +6,60 @@ using System.Threading.Tasks;
 
 namespace SpiderController
 {
-    
-    //全局变量N的声明忘记格式了
-    class Motor 
-    {
-        int num;
-        int angle;
-
-        public Motor (int n, int a = 50) {
-            this.num = n;
-            this.angle = a;
-        }
-        public void setNum (int n) {
-            this.num = n;
-        }
-        public int getAngle () 
-        {
-            return this.angle;
-        }
-    }
-
-    class Group
-    {
-        const int N = 6;
-        Motor[] group = new Motor[N];
-        int[] Status = new int[N];
-
-        public Group()
-        {
-            for (int i = 0; i < N; i++)
-            {
-                group[i].setNum(i);
-                Status[i] = group[i].getAngle();
-            }
-        }
-
-        public void renewStatus(int[] newState)
-        {
-            for (int i = 0; i < N; i++)
-            {
-                Status[i] = newState[i];
-            }
-        }
-        public int[] getStatus()
-        {
-            return Status;
-        }
-    }
-
     class Move
     {
         const int N = 6;
-        Group vertical = new Group();
-        Group horizon  = new Group();
+        SKSerial group = new SKSerial();
         //扭转角度全局变量，声明方法
-        const int[] s1 = { 0, 0, 0 };//,{0},{0},{0},{0},{0}};
+        const byte [] s1 = { 0, 0, 0 };//,{0},{0},{0},{0},{0}};
 
-
+        private void delay(int ms)
+        {
+            System.Threading.Thread.Sleep(ms);
+        }
         public void Straight()
         {
+            
             //状态待改
-            vertical.renewStatus(s1);
-            horizon.renewStatus(s1);
-            vertical.renewStatus(s1);
-            horizon.renewStatus(s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
+            /// <para>每次发送完成后，请至少等待(5*max_turn+10)毫秒后再次操作本舵机组</para>
+            /// <para>其中max_turn为本次转动中转动角度最大的舵机</para>
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
 
-            vertical.renewStatus(s1);
-            horizon.renewStatus(s1);
-            vertical.renewStatus(s1);
-            horizon.renewStatus(s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1); 
         }
 
         public void turnLeft() 
         {
-            vertical.renewStatus(s1);
-            horizon.renewStatus(s1);
-            vertical.renewStatus(s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
 
-            vertical.renewStatus(s1);
-            horizon.renewStatus(s1);
-            vertical.renewStatus(s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
 
-            horizon.renewStatus(s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
         }
         public void turnRight() 
         {
-            vertical.renewStatus(s1);
-            horizon.renewStatus(s1);
-            vertical.renewStatus(s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
 
-            vertical.renewStatus(s1);
-            horizon.renewStatus(s1);
-            vertical.renewStatus(s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
+            group.control(SpiderController.SKSerial.Type.UP_AND_DOWN, s1);
 
-            horizon.renewStatus(s1);
+            group.control(SpiderController.SKSerial.Type.LEFT_AND_RIGHT, s1);
         }
     }
-    enum Pos { LEFT, RIGHT, FRONT, UNKNOWN, EEROR};
+    enum Pos { LEFT, RIGHT, FRONT, UNKNOWN, ERROR};
     class AutoControl : Move
     {
         int data;
@@ -119,8 +76,8 @@ namespace SpiderController
                 case 4:
                     return Pos.UNKNOWN;
                 default:
-                    //warning
-                    return Pos.EEROR;
+                    System.Windows.Forms.MessageBox.Show("视频数据错误！");
+                    return Pos.ERROR;
             }
         }
         void move()
@@ -147,6 +104,7 @@ namespace SpiderController
     class ManControl:Move 
     {
         int order;
+        
         public void move()
         {
             switch (order)
