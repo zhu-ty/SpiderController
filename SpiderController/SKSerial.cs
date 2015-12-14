@@ -128,7 +128,7 @@ namespace SpiderController
             }
             byte[] to_send = new byte[8];
             to_send[0] = 0xFE;
-            to_send[1] = (byte)((((t == Type.LEFT_AND_RIGHT) ? 1 : 0) << 7) | (speed << 4) | (delay << 1) | 0x01);
+            to_send[1] = (byte)((((t == Type.LEFT_AND_RIGHT) ? 0 : 1) << 7) | (speed << 4) | (delay << 1) | 0x01);
             Array.Copy(pos, 0, to_send, 2, 6);
             try
             {
