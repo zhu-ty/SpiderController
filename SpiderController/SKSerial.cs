@@ -104,7 +104,7 @@ namespace SpiderController
         /// <para>若为UP_AND_DOWN，则为上下舵机组</para>
         /// <para>若为LEFT_AND_RIGHT，则为左右舵机组</para>
         /// </param>
-        /// <param name="pos">
+        /// <param name="_pos">
         /// 舵机组的各个角度，数组长度为MAX_SERVO(6)
         /// <para>目前pos内各个值仅能为10~90</para>
         /// </param>
@@ -115,8 +115,10 @@ namespace SpiderController
         /// 舵机转动延迟，默认为5，勿动
         /// </param>
         /// <returns></returns>
-        public bool control(Type t, byte[] pos,int speed = 5,int delay = 5)
+        public bool control(Type t, byte[] _pos,int speed = 5,int delay = 5)
         {
+            byte[] pos = new byte[6];
+            _pos.CopyTo(pos, 0);
             if (main_port.IsOpen == false || pos.Length != MAX_SERVO || speed < 1 || speed > 7 || delay < 1 || delay > 7)
                 return false;
             for (int i = 0; i < MAX_SERVO; i++)
