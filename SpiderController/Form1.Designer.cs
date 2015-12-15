@@ -69,6 +69,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "前进";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // menuStrip1
             // 
@@ -120,6 +121,7 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "自动控制";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -143,7 +145,7 @@
             this.textBox2.Location = new System.Drawing.Point(94, 64);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(27, 21);
-            this.textBox2.TabIndex = 10;
+            this.textBox2.TabIndex = 11;
             // 
             // Form1
             // 

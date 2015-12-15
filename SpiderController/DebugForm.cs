@@ -18,16 +18,61 @@ namespace SpiderController
         {
             InitializeComponent();
         }
-
+        
         private void DebugForm_Load(object sender, EventArgs e)
         {
             //for (int i = 0; i < sk.get_com_list().Length; i++)
                 //textBox1.AppendText(sk.get_com_list()[i] + "\r\n");
-            sk.set_com("COM3");
-            sk.connect();
-            byte[] s6 = new byte[6];
-            for (int i = 0; i < 6; i++) s6[i] = 20;
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, s6);
+            sk.set_com("COM4");
+            sk.connect();         
+            byte[] v0 = { 50, 50, 50, 50, 50, 50 };
+            byte[] v1 = { 90, 50, 90, 50, 90, 50 };
+            byte[] v3 = { 40, 50, 40, 50, 40, 50 };
+            byte[] v2 = { 50, 90, 50, 90, 50, 90 };
+            byte[] v4 = { 50, 40, 50, 40, 50, 40 };
+
+
+            byte[] h0 = { 50, 50, 50, 50, 50, 50 };
+            byte[] h1 = { 50, 70, 50, 70, 50, 70 };
+            byte[] h2 = { 50, 40, 50, 40, 50, 40 };
+            byte[] h3 = { 70, 50, 70, 50, 70, 50 };
+            byte[] h4 = { 30, 50, 30, 50, 30, 50 };
+
+            //每次发送完成后，请至少等待(5*max_turn+10)毫秒后再次操作本舵机组</para>
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, v0);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.UP_AND_DOWN, h0);
+            System.Threading.Thread.Sleep(260);
+
+            sk.control(SKSerial.Type.UP_AND_DOWN, v1);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h1);
+            System.Threading.Thread.Sleep(260);
+
+            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h2);
+
+            //for (int i = 0; i < 6; i++) s6[i] = 50;
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, v0);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.UP_AND_DOWN, h0);
+            System.Threading.Thread.Sleep(260);
+
+            sk.control(SKSerial.Type.UP_AND_DOWN, v2);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h3);
+            System.Threading.Thread.Sleep(260);
+            
+            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h4);
+
+            System.Threading.Thread.Sleep(1260);
+            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+            System.Threading.Thread.Sleep(1260);
             sk.disconnect();
         }
     }

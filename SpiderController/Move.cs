@@ -11,12 +11,13 @@ namespace SpiderController
         const int N = 6;
         SKSerial group = new SKSerial();
         //扭转角度全局变量，声明方法
-        const byte [] s1 = { 0, 0, 0 };//,{0},{0},{0},{0},{0}};
+        byte [] s1 = { 0, 0, 0 };
 
         private void delay(int ms)
         {
             System.Threading.Thread.Sleep(ms);
         }
+        
         public void Straight()
         {
             
