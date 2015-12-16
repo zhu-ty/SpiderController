@@ -17,10 +17,12 @@ namespace SpiderController
         private CheckBox[] clb;
         Move spider = new Move();
         
+        
         public Form1()
         {
             InitializeComponent();
             Auto = Man = connected = false;
+            
         }
         
         private void button6_Click(object sender, EventArgs e)

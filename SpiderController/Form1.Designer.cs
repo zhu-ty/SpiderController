@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,20 +47,22 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(275, 93);
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.Location = new System.Drawing.Point(233, 114);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(46, 77);
+            this.button1.Size = new System.Drawing.Size(65, 75);
             this.button1.TabIndex = 0;
             this.button1.Text = "左转";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.left_Mouse_Down);
             this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.left_Mouse_Up);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(418, 93);
+            this.button2.Location = new System.Drawing.Point(385, 114);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(48, 77);
+            this.button2.Size = new System.Drawing.Size(67, 75);
             this.button2.TabIndex = 1;
             this.button2.Text = "右转";
             this.button2.UseVisualStyleBackColor = true;
@@ -68,9 +71,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(327, 93);
+            this.button3.Location = new System.Drawing.Point(304, 114);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 75);
+            this.button3.Size = new System.Drawing.Size(75, 75);
             this.button3.TabIndex = 2;
             this.button3.Text = "前进";
             this.button3.UseVisualStyleBackColor = true;
@@ -79,9 +82,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(176, 61);
+            this.button4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.Location = new System.Drawing.Point(274, 31);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(75, 30);
             this.button4.TabIndex = 5;
             this.button4.Text = "连接";
             this.button4.UseVisualStyleBackColor = true;
@@ -89,9 +93,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(176, 90);
+            this.button5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.Location = new System.Drawing.Point(368, 31);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(75, 30);
             this.button5.TabIndex = 6;
             this.button5.Text = "断开";
             this.button5.UseVisualStyleBackColor = true;
@@ -99,9 +104,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(176, 128);
+            this.button6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button6.Location = new System.Drawing.Point(156, 90);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(55, 53);
             this.button6.TabIndex = 7;
             this.button6.Text = "自动控制";
             this.button6.UseVisualStyleBackColor = true;
@@ -109,9 +115,10 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(176, 157);
+            this.button7.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button7.Location = new System.Drawing.Point(156, 159);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(55, 52);
             this.button7.TabIndex = 8;
             this.button7.Text = "手动控制";
             this.button7.UseVisualStyleBackColor = true;
@@ -121,16 +128,17 @@
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Menu;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(176, 22);
+            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Location = new System.Drawing.Point(156, 31);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(55, 14);
+            this.textBox1.Size = new System.Drawing.Size(55, 19);
             this.textBox1.TabIndex = 9;
             this.textBox1.Text = "连接状态";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("宋体", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox2.Location = new System.Drawing.Point(237, 21);
+            this.textBox2.Location = new System.Drawing.Point(217, 35);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(14, 15);
             this.textBox2.TabIndex = 11;
@@ -138,18 +146,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 20);
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(21, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(88, 26);
             this.label1.TabIndex = 12;
             this.label1.Text = "端口选择";
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(24, 52);
+            this.checkedListBox1.Location = new System.Drawing.Point(15, 90);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(74, 116);
+            this.checkedListBox1.Size = new System.Drawing.Size(94, 130);
             this.checkedListBox1.TabIndex = 13;
             // 
             // timer1
@@ -166,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 210);
+            this.ClientSize = new System.Drawing.Size(498, 246);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
