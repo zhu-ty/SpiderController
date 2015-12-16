@@ -136,14 +136,14 @@ namespace SpiderController
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (!Auto && Man && connected)
-                test(order);
-                //spider.move(order);
+                //test(order);
+                spider.move(order);
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            if (!Auto && Man && connected) test(order);
-                //spider.move(order);
+            if (!Auto && Man && connected) //test(order);
+                spider.move(order);
         }
     }
 }
