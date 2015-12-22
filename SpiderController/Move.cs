@@ -42,7 +42,9 @@ namespace SpiderController
 
             sk.control(SKSerial.Type.UP_AND_DOWN, v3);
             System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h2);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+            System.Threading.Thread.Sleep(260);
+
             //另三只
             sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
             System.Threading.Thread.Sleep(260);
@@ -57,14 +59,19 @@ namespace SpiderController
             sk.control(SKSerial.Type.UP_AND_DOWN, v4);
             System.Threading.Thread.Sleep(260);
             sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+            System.Threading.Thread.Sleep(260);
         }
 
         byte[] t1 = { 30, 80, 50, 10, 60, 10 };
         byte[] t2 = { 80, 90, 90, 10, 10, 10 };
         byte[] t3 = { 30, 50, 50, 40, 60, 50 };
         //turnleft
-        byte[] t4 = { 90, 50, 90, 40, 10, 50 };
+        /*byte[] t4 = { 90, 50, 90, 40, 10, 50 };
         byte[] t5 = { 90, 90, 90, 10, 10, 10 };
+        byte[] t6 = { 30, 50, 50, 40, 60, 50 };*/
+
+        byte[] t4 = { 30, 10, 50, 90, 60, 90 };
+        byte[] t5 = { 0, 10, 10, 90, 90, 90 };
         byte[] t6 = { 30, 50, 50, 40, 60, 50 };
 
         public void turnRight() 

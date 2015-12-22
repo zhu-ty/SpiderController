@@ -22,11 +22,11 @@ namespace SpiderController
         /// <summary>
         /// 舵机转动最大角度
         /// </summary>
-        public const int MAX_POS = 90;
+        public const int MAX_POS = 100;
         /// <summary>
         /// 舵机转动最小角度
         /// </summary>
-        public const int MIN_POS = 10;
+        public const int MIN_POS = 0;
         /// <summary>
         /// 中间位置
         /// </summary>
@@ -115,7 +115,7 @@ namespace SpiderController
         /// 舵机转动延迟，默认为5，勿动
         /// </param>
         /// <returns></returns>
-        public bool control(Type t, byte[] _pos,int speed = 5,int delay = 5)
+        public bool control(Type t, byte[] _pos,int speed = 5,int delay = 2)
         {
             byte[] pos = new byte[6];
             _pos.CopyTo(pos, 0);
