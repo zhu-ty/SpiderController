@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoInfoCatcher.cs" />
     <Compile Include="DebugForm.cs">
       <SubType>Form</SubType>
     </Compile>

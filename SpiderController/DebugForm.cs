@@ -13,7 +13,7 @@ namespace SpiderController
     public partial class DebugForm : Form
     {
         SKSerial sk = new SKSerial();
-
+        AutoInfoCatcher aic = new AutoInfoCatcher("59.66.135.127");
         public DebugForm()
         {
             InitializeComponent();
@@ -21,6 +21,7 @@ namespace SpiderController
         
         private void DebugForm_Load(object sender, EventArgs e)
         {
+            /*
             //for (int i = 0; i < sk.get_com_list().Length; i++)
                 //textBox1.AppendText(sk.get_com_list()[i] + "\r\n");
             sk.set_com("COM4");
@@ -73,7 +74,6 @@ namespace SpiderController
                 sk.control(SKSerial.Type.UP_AND_DOWN, v4);
                 System.Threading.Thread.Sleep(260);
                 sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-                */
            }
             //byte[] test = { 80, 90, 80, 10, 10, 10 };
             ////byte[] h0 = { 30, 50, 50, 40, 60, 50 };
@@ -106,6 +106,13 @@ namespace SpiderController
             //    System.Threading.Thread.Sleep(260);
             //}
             sk.disconnect();
+            */
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AutoInfoCatcher.Info info = aic.get_info();
+            textBox1.Text += info.ToString();
         }
     }
 }
