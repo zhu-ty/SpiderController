@@ -32,23 +32,30 @@ namespace SpiderController
             Auto = true; Man = false;
             string ip = textBox3.Text;
             AutoInfoCatcher aic = new AutoInfoCatcher(ip);
-            AutoInfoCatcher.Info info = aic.get_info();
             while (Auto && !Man)
+            {
+                AutoInfoCatcher.Info info = aic.get_info();
+                //textBox4.Text += info.ToString() + "\r\n";
+                Console.WriteLine(info.ToString());
                 switch (info)
                 {
                     case AutoInfoCatcher.Info.STRAIGHT:
                         spider.move(3);
+                        System.Threading.Thread.Sleep(500);
                         break;
                     case AutoInfoCatcher.Info.LEFT:
                         spider.move(1);
+                        System.Threading.Thread.Sleep(1500);
                         break;
                     case AutoInfoCatcher.Info.RIGHT:
                         spider.move(2);
+                        System.Threading.Thread.Sleep(1500);
                         break;
                     default:
                         spider.move(4);
                         break;
                 }
+            }
         }
 
         private void button3_mouse_down(object sender, MouseEventArgs e)

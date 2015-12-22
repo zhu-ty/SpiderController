@@ -66,29 +66,33 @@ namespace SpiderController
                 byte[] rev_buffer = new byte[10];
                 int len = client.Receive(rev_buffer);
                 if (len <= 0)
-                    return Info.RIGHT;
+                    return Info.NULL;
                 else
                 {
                     switch (rev_buffer[0])
                     {
                         case (byte)'0':
                             return Info.STRAIGHT;
+                            break;
                         case (byte)'1':
                             return Info.LEFT;
+                            break;
                         case (byte)'2':
                             return Info.RIGHT;
+                            break;
                         default:
-                            return Info.RIGHT;
+                            return Info.NULL;
+                            break;
                     }
                 }
             }
             catch (Exception)
             {
-                return Info.RIGHT;
+                return Info.NULL;
             }
         }
 
-        public enum Info { STRAIGHT, LEFT, RIGHT };
+        public enum Info { STRAIGHT, LEFT, RIGHT, NULL };
         /// <summary>
         /// 连接等待时间
         /// </summary>
@@ -104,6 +108,7 @@ namespace SpiderController
                 client.Close();
                 return false;
             }
+            client.ReceiveTimeout = 100;
             return true;
         }
         private IPAddress target_ip;
