@@ -27,39 +27,41 @@ namespace SpiderController
         
         private void button6_Click(object sender, EventArgs e)
         {
-            Auto = true; Man = false; 
-        }
-
-        private void test(int order)
-        {
-            switch (order)
-            {
-                case 1:
-                    label1.Text += "1";
-                    break;
-                case 2:
-                    label1.Text += "2";
-                    break;
-                case 3:
-                    label1.Text += "3";
-                    break;
-                case 4:
-                    label1.Text += "4";
-                    break;
-                default:
-                    break;
-            }
+            button6.BackColor = Color.Gray;
+            button7.BackColor = System.Drawing.SystemColors.Control;
+            Auto = true; Man = false;
+            string ip = textBox3.Text;
+            AutoInfoCatcher aic = new AutoInfoCatcher(ip);
+            AutoInfoCatcher.Info info = aic.get_info();
+            while (Auto && !Man)
+                switch (info)
+                {
+                    case AutoInfoCatcher.Info.STRAIGHT:
+                        spider.move(3);
+                        break;
+                    case AutoInfoCatcher.Info.LEFT:
+                        spider.move(1);
+                        break;
+                    case AutoInfoCatcher.Info.RIGHT:
+                        spider.move(2);
+                        break;
+                    default:
+                        spider.move(4);
+                        break;
+                }
         }
 
         private void button3_mouse_down(object sender, MouseEventArgs e)
         {
             order = 3;
+            timer1.Interval = 10;
             timer1.Start();
         }
 
         private void button3_Mouse_up(object sender, MouseEventArgs e)
         {
             order = 4;
+            //timer1.Interval = 10;
             timer1.Stop();
         }
 
@@ -91,7 +93,6 @@ namespace SpiderController
             {
                 spider.sk.set_com(tmp);
                 textBox2.BackColor = Color.GreenYellow;
-                
             }
             spider.sk.connect();
             connected = true;
@@ -107,11 +108,14 @@ namespace SpiderController
         private void button7_Click(object sender, EventArgs e)
         {
             Auto = false; Man = true;
+            button7.BackColor = Color.Gray;
+            button6.BackColor = System.Drawing.SystemColors.Control;
         }
 
         private void left_Mouse_Down(object sender, MouseEventArgs e)
         {
             order = 1;
+            timer2.Interval = 10;
             timer2.Start();
         }
 
@@ -124,6 +128,7 @@ namespace SpiderController
         private void right_Mouse_Down(object sender, MouseEventArgs e)
         {
             order = 2;
+            timer2.Interval = 10;
             timer2.Start();
         }
 
@@ -138,12 +143,14 @@ namespace SpiderController
             if (!Auto && Man && connected)
                 //test(order);
                 spider.move(order);
+            timer1.Interval = 7000;
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
             if (!Auto && Man && connected) //test(order);
                 spider.move(order);
+            timer2.Interval = 1600;
         }
     }
 }

@@ -10,18 +10,25 @@ namespace SpiderController
     {
         const int N = 6;
         public SKSerial sk = new SKSerial();
-        
+
         byte[] v0 = { 50, 50, 50, 50, 50, 50 };
-        byte[] v1 = { 90, 50, 90, 50, 90, 50 };
-        byte[] v3 = { 40, 50, 40, 50, 40, 50 };
-        byte[] v2 = { 50, 90, 50, 90, 50, 90 };
-        byte[] v4 = { 50, 40, 50, 40, 50, 40 };
+        byte[] v1 = { 50, 90, 50, 90, 50, 90 }; //1 3 5
+        byte[] v2 = { 90, 50, 90, 50, 90, 50 }; //2 4 6
 
+        byte[] v3 = { 50, 30, 50, 30, 50, 30 };
+        byte[] v4 = { 30, 50, 30, 50, 30, 50 };
 
+        //初始状态
         byte[] h0 = { 30, 50, 50, 40, 60, 50 };
-        byte[] h1 = { 30, 70, 50, 50, 70, 70 };
-        byte[] h2 = { 30, 40, 50, 30, 60, 40 };
-        byte[] h3 = { 50, 50, 70, 40, 80, 50 };
+        //逆时针
+        byte[] h1 = { 0, 50, 5, 40, 90, 50 };
+        byte[] h2 = { 0, 5, 5, 80, 90, 90 };
+        //顺时针
+        byte[] h3 = { 70, 50, 90, 40, 10, 50 };
+        byte[] h4 = { 70, 90, 90, 0, 10, 0 };
+        //直行
+        byte[] h5 = { 60, 50, 90, 40, 85, 50 };
+        byte[] h6 = { 30, 80, 50, 80, 60, 90 };
 
         private void delay(int ms)
         {
@@ -30,97 +37,98 @@ namespace SpiderController
         
         public void Straight()
         {
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-            System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
-            System.Threading.Thread.Sleep(260);
+            int a = 3;
+            while (a-- > 0)
+            {
+                sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+                System.Threading.Thread.Sleep(260);
+                sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+                System.Threading.Thread.Sleep(260);
 
-            sk.control(SKSerial.Type.UP_AND_DOWN, v1);
-            System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h1);
-            System.Threading.Thread.Sleep(260);
+                sk.control(SKSerial.Type.UP_AND_DOWN, v1);
+                System.Threading.Thread.Sleep(260);
+                sk.control(SKSerial.Type.LEFT_AND_RIGHT, h5);
+                System.Threading.Thread.Sleep(260);
 
-            sk.control(SKSerial.Type.UP_AND_DOWN, v3);
-            System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-            System.Threading.Thread.Sleep(260);
+                sk.control(SKSerial.Type.UP_AND_DOWN, v3);
+                System.Threading.Thread.Sleep(260);
+                sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+                System.Threading.Thread.Sleep(260);
 
-            //另三只
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-            System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
-            System.Threading.Thread.Sleep(260);
+                sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+                System.Threading.Thread.Sleep(260);
+                sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+                System.Threading.Thread.Sleep(260);
+            }
 
             sk.control(SKSerial.Type.UP_AND_DOWN, v2);
             System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h3);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h6);
             System.Threading.Thread.Sleep(260);
 
             sk.control(SKSerial.Type.UP_AND_DOWN, v4);
             System.Threading.Thread.Sleep(260);
             sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
             System.Threading.Thread.Sleep(260);
-        }
 
-        byte[] t1 = { 30, 80, 50, 10, 60, 10 };
-        byte[] t2 = { 80, 90, 90, 10, 10, 10 };
-        byte[] t3 = { 30, 50, 50, 40, 60, 50 };
-        //turnleft
-        /*byte[] t4 = { 90, 50, 90, 40, 10, 50 };
-        byte[] t5 = { 90, 90, 90, 10, 10, 10 };
-        byte[] t6 = { 30, 50, 50, 40, 60, 50 };*/
-
-        byte[] t4 = { 30, 10, 50, 90, 60, 90 };
-        byte[] t5 = { 0, 10, 10, 90, 90, 90 };
-        byte[] t6 = { 30, 50, 50, 40, 60, 50 };
-
-        public void turnRight() 
-        {
             sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
             System.Threading.Thread.Sleep(260);
             sk.control(SKSerial.Type.UP_AND_DOWN, v0);
             System.Threading.Thread.Sleep(260);
 
-            sk.control(SKSerial.Type.UP_AND_DOWN, v1);
-            System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, t1);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
             System.Threading.Thread.Sleep(260);
             sk.control(SKSerial.Type.UP_AND_DOWN, v0);
-            System.Threading.Thread.Sleep(260);
-
-            sk.control(SKSerial.Type.UP_AND_DOWN, v2);
-            System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, t2);
-            System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
-            System.Threading.Thread.Sleep(260);
-
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, t3);
             System.Threading.Thread.Sleep(260);
         }
 
         public void turnLeft() 
         {
+            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            System.Threading.Thread.Sleep(260);
             sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+            System.Threading.Thread.Sleep(260);
+
+            sk.control(SKSerial.Type.UP_AND_DOWN, v1);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h1);
             System.Threading.Thread.Sleep(260);
             sk.control(SKSerial.Type.UP_AND_DOWN, v0);
             System.Threading.Thread.Sleep(260);
 
             sk.control(SKSerial.Type.UP_AND_DOWN, v2);
             System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, t4);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h2);
             System.Threading.Thread.Sleep(260);
+
             sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+            System.Threading.Thread.Sleep(260);
+        }
+
+        public void turnRight() 
+        {
+            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
             System.Threading.Thread.Sleep(260);
 
             sk.control(SKSerial.Type.UP_AND_DOWN, v1);
             System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, t5);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h3);
             System.Threading.Thread.Sleep(260);
             sk.control(SKSerial.Type.UP_AND_DOWN, v0);
             System.Threading.Thread.Sleep(260);
 
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, t6);
+            sk.control(SKSerial.Type.UP_AND_DOWN, v2);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h4);
+            System.Threading.Thread.Sleep(260);
+
+            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            System.Threading.Thread.Sleep(260);
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
             System.Threading.Thread.Sleep(260);
         }
 
@@ -150,5 +158,4 @@ namespace SpiderController
             }
         } 
     }
-    enum Pos { LEFT, RIGHT, FRONT, UNKNOWN, ERROR};
 }
