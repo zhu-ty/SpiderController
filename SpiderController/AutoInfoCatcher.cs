@@ -60,6 +60,15 @@ namespace SpiderController
         {
             try
             {
+                client.ReceiveTimeout = 10;
+                try
+                {
+                    client.Receive(new byte[10]);
+                }
+                catch(Exception)
+                {
+                }
+                client.ReceiveTimeout = 100;
                 byte[] send_byte = new byte[1];
                 send_byte[0] = 0x31;
                 client.Send(send_byte);
@@ -73,16 +82,12 @@ namespace SpiderController
                     {
                         case (byte)'0':
                             return Info.STRAIGHT;
-                            break;
                         case (byte)'1':
                             return Info.LEFT;
-                            break;
                         case (byte)'2':
                             return Info.RIGHT;
-                            break;
                         default:
                             return Info.NULL;
-                            break;
                     }
                 }
             }

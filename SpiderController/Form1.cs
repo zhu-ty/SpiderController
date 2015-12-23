@@ -45,11 +45,11 @@ namespace SpiderController
                         break;
                     case AutoInfoCatcher.Info.LEFT:
                         spider.move(1);
-                        System.Threading.Thread.Sleep(1500);
+                        System.Threading.Thread.Sleep(500);
                         break;
                     case AutoInfoCatcher.Info.RIGHT:
                         spider.move(2);
-                        System.Threading.Thread.Sleep(1500);
+                        System.Threading.Thread.Sleep(500);
                         break;
                     default:
                         spider.move(4);
@@ -91,6 +91,7 @@ namespace SpiderController
             {
                 checkedListBox1.Items.Add(coms[i]);
             }
+            checkedListBox1.SetItemChecked(0, true);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -147,17 +148,33 @@ namespace SpiderController
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            Console.WriteLine(timer1.Interval.ToString());
+            if (timer1.Interval != 2500)
+            {
+                timer1.Stop();
+                timer1.Interval = 2500;
+                timer1.Start();
+            }
             if (!Auto && Man && connected)
+            {
                 //test(order);
+
                 spider.move(order);
-            timer1.Interval = 7000;
+                Console.WriteLine("GO");
+            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            if (timer2.Interval != 1600)
+            {
+                timer2.Stop();
+                timer2.Interval = 1600;
+                timer2.Start();
+            }
             if (!Auto && Man && connected) //test(order);
                 spider.move(order);
-            timer2.Interval = 1600;
+            //timer2.Interval = 1600;
         }
     }
 }

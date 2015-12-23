@@ -37,49 +37,55 @@ namespace SpiderController
         
         public void Straight()
         {
+            const int interval = 170;
             int a = 3;
             while (a-- > 0)
             {
                 sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-                System.Threading.Thread.Sleep(260);
+                System.Threading.Thread.Sleep(interval);
                 sk.control(SKSerial.Type.UP_AND_DOWN, v0);
-                System.Threading.Thread.Sleep(260);
+                System.Threading.Thread.Sleep(interval);
 
                 sk.control(SKSerial.Type.UP_AND_DOWN, v1);
-                System.Threading.Thread.Sleep(260);
+                System.Threading.Thread.Sleep(interval);
                 sk.control(SKSerial.Type.LEFT_AND_RIGHT, h5);
-                System.Threading.Thread.Sleep(260);
+                System.Threading.Thread.Sleep(interval);
 
                 sk.control(SKSerial.Type.UP_AND_DOWN, v3);
-                System.Threading.Thread.Sleep(260);
+                System.Threading.Thread.Sleep(interval);
                 sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-                System.Threading.Thread.Sleep(260);
+                System.Threading.Thread.Sleep(interval);
 
-                sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-                System.Threading.Thread.Sleep(260);
-                sk.control(SKSerial.Type.UP_AND_DOWN, v0);
-                System.Threading.Thread.Sleep(260);
+                //sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+                //System.Threading.Thread.Sleep(interval);
+                //sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+                //System.Threading.Thread.Sleep(interval);
             }
 
+            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+            System.Threading.Thread.Sleep(interval);
+            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            System.Threading.Thread.Sleep(interval);
+
             sk.control(SKSerial.Type.UP_AND_DOWN, v2);
-            System.Threading.Thread.Sleep(260);
+            System.Threading.Thread.Sleep(interval);
             sk.control(SKSerial.Type.LEFT_AND_RIGHT, h6);
-            System.Threading.Thread.Sleep(260);
+            System.Threading.Thread.Sleep(interval);
 
             sk.control(SKSerial.Type.UP_AND_DOWN, v4);
-            System.Threading.Thread.Sleep(260);
+            System.Threading.Thread.Sleep(interval);
             sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-            System.Threading.Thread.Sleep(260);
+            System.Threading.Thread.Sleep(interval);
 
             sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-            System.Threading.Thread.Sleep(260);
+            System.Threading.Thread.Sleep(interval);
             sk.control(SKSerial.Type.UP_AND_DOWN, v0);
-            System.Threading.Thread.Sleep(260);
+            System.Threading.Thread.Sleep(interval);
 
-            sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
-            System.Threading.Thread.Sleep(260);
-            sk.control(SKSerial.Type.UP_AND_DOWN, v0);
-            System.Threading.Thread.Sleep(260);
+            //sk.control(SKSerial.Type.LEFT_AND_RIGHT, h0);
+            //System.Threading.Thread.Sleep(interval);
+            //sk.control(SKSerial.Type.UP_AND_DOWN, v0);
+            //System.Threading.Thread.Sleep(interval);
         }
 
         public void turnLeft() 
